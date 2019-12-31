@@ -1,12 +1,75 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const ToDoItem = ( props ) => {
+	return (
+		<div className="todo-item">
+			<div className="todo-title">{props.item}</div>
+			<div className="todo-close" onClick={ () => props.deleteItem }>X</div>
+		</div>
+	)
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const ToDoList = ( props ) => {
+	if( props.list.length ) {
+		return (
+			<div className="todo-list-wrap">
+				<h3>Todo List</h3>
+				<div className="todo-list">
+					{props.list.map( ( item, key ) => <ToDoItem key={key} item={item} deleteItem={props.deleteItem} /> )}
+				</div>
+			</div>
+		)
+	}
+
+	return (
+		<div></div>
+	)
+}
+
+class ToDo extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+        	todoText: '',
+        	list : [ 'One', 'Two' ],
+        }
+    }
+
+    setCurrentTodo = (event) => {
+    	this.setState( {
+    		todoText: event.target.value
+    	});
+    }
+
+    removeItem = (item) => {
+    	console.log( 'ok' );
+    	console.log( item );
+    }
+
+    addTodo = (event) => {
+    	const list = this.state.list || [];
+    	list.push( this.state.todoText );
+    	this.setState( {
+    		list: list
+    	});
+    }
+
+    deleteItem = (event) => {
+    	console.log( 'ok' );
+    }
+
+    render() {
+        return (
+            <div>
+		        <h1>Todo App</h1>
+		        <input type="text" placeholder="Title.." onChange={this.setCurrentTodo} />
+		        <input type="submit" onClick={this.addTodo} value="Add" />
+		        <ToDoList list={this.state.list} deleteItem={this.deleteItem} />
+	        </div>
+        );
+    }
+}
+
+ReactDOM.render(<ToDo />, document.getElementById("root"));

@@ -14,6 +14,7 @@ Add remote origin with below code:
 
 `git init`
 `git remote add origin https://github.com/maheshwaghmare/reactjs-todo.git`
+`git push origin master`
 
 # Start Project
 
@@ -37,6 +38,21 @@ Install Github Pages with below code:
 
 `npm install gh-pages --save-dev`
 
+Add below code in `package.json` file:
+
+`"homepage": "https://maheshwaghmare.github.io/reactjs-todo/",`
+
+and in "scripts":
+
+`
+	"predeploy": "npm run build",
+	"deploy": "gh-pages -d build"
+`
+
 Deply Github pages with below code:
 
 `npm run deploy`
+
+Then visit:
+
+https://maheshwaghmare.github.io/reactjs-todo/
