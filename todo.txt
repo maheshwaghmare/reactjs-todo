@@ -52,6 +52,9 @@ and in "scripts":
 Deply Github pages with below code:
 
 `npm run deploy`
+`git add .`
+`git commit -m "Deploy the App."`
+`git push origin master`
 
 Then visit:
 

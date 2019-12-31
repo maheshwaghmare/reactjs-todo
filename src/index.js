@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ToDoItem = ( props ) => {
 	return (
@@ -14,9 +15,9 @@ const ToDoItem = ( props ) => {
 const ToDoList = ( props ) => {
 	if( props.list.length ) {
 		return (
-			<div className="todo-list-wrap">
+			<div className="todo-list-wrap mt-5">
 				<h3>Todo List</h3>
-				<div className="todo-list">
+				<div className="todo-list mt-2">
 					{props.list.map( ( item, key ) => <ToDoItem key={key} item={item} deleteItem={props.deleteItem} /> )}
 				</div>
 			</div>
@@ -62,8 +63,8 @@ class ToDo extends React.Component {
 
     render() {
         return (
-            <div>
-		        <h1>Todo App</h1>
+            <div className="container py-5 text-center">
+		        <h1 className="mb-4">Todo App</h1>
 		        <input type="text" placeholder="Title.." onChange={this.setCurrentTodo} />
 		        <input type="submit" onClick={this.addTodo} value="Add" />
 		        <ToDoList list={this.state.list} deleteItem={this.deleteItem} />
