@@ -7,7 +7,7 @@ const ToDoItem = ( props ) => {
 	console.log( props );
 	return (
 		<div className="todo-item">
-			<div className="todo-title">{props.item}</div>
+			<div className="todo-title">{props.item} <small>{Date(props.itemKey.toString())}</small></div>
 			<div className="todo-close" onClick={ () => props.deleteItem(props.itemKey) }>X</div>
 		</div>
 	)

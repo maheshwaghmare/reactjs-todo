@@ -12,9 +12,9 @@ Check current remote with below code:
 
 Add remote origin with below code:
 
-`git init`
-`git remote add origin https://github.com/maheshwaghmare/reactjs-todo.git`
-`git push origin master`
+- `git init`
+- `git remote add origin https://github.com/maheshwaghmare/reactjs-todo.git`
+- `git push origin master`
 
 # Start Project
 
@@ -51,10 +51,10 @@ and in "scripts":
 
 Deply Github pages with below code:
 
-`npm run deploy`
-`git add .`
-`git commit -m "Deploy the App."`
-`git push origin master`
+- `npm run deploy`
+- `git add .`
+- `git commit -m "Deploy the App."`
+- `git push origin master`
 
 Then visit:
 
