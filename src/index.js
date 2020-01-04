@@ -4,21 +4,22 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ToDoItem = ( props ) => {
+	console.log( props );
 	return (
 		<div className="todo-item">
 			<div className="todo-title">{props.item}</div>
-			<div className="todo-close" onClick={ () => props.deleteItem }>X</div>
+			<div className="todo-close" onClick={ () => props.deleteItem(props.itemKey) }>X</div>
 		</div>
 	)
 }
 
 const ToDoList = ( props ) => {
-	if( props.list.length ) {
+	if( Object.keys( props.list ).length ) {
 		return (
 			<div className="todo-list-wrap mt-5">
 				<h3>Todo List</h3>
 				<div className="todo-list mt-2">
-					{props.list.map( ( item, key ) => <ToDoItem key={key} item={item} deleteItem={props.deleteItem} /> )}
+					{ Object.keys( props.list ).map( ( key ) => <ToDoItem key={key} itemKey={key} item={props.list[key]} deleteItem={props.deleteItem} /> ) }
 				</div>
 			</div>
 		)
@@ -34,7 +35,7 @@ class ToDo extends React.Component {
         super();
         this.state = {
         	todoText: '',
-        	list : [ 'One', 'Two' ],
+        	list : [],
         }
     }
 
@@ -51,14 +52,21 @@ class ToDo extends React.Component {
 
     addTodo = (event) => {
     	const list = this.state.list || [];
-    	list.push( this.state.todoText );
+    	list[Date.now()] = this.state.todoText;
     	this.setState( {
-    		list: list
+    		list: list,
     	});
     }
 
-    deleteItem = (event) => {
-    	console.log( 'ok' );
+    deleteItem = (itemKey) => {
+    	const list = this.state.list || [];
+    	console.log( 'Before', list );
+    	delete list[itemKey];
+    	console.log( 'After', list );
+
+    	this.setState( {
+    		list: list
+    	});
     }
 
     render() {
